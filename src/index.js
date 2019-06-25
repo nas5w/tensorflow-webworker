@@ -5,7 +5,10 @@ var myWorker = new Worker();
 myWorker.postMessage(null);
 
 myWorker.onmessage = function(e) {
-  console.log(e.data);
+  const newListItem = document.createElement("li");
+  newListItem.innerHTML = e.data;
+  const list = document.querySelector("#status");
+  list.append(newListItem);
 };
 
 if (module.hot) {
