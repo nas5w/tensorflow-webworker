@@ -1,3 +1,3 @@
 onmessage = function(e) {
-  postMessage("howdy");
+  postMessage("testing");
 };

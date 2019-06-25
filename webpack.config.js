@@ -1,11 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
+  devServer: {
+    contentBase: "./dist",
+    hot: true
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.bundle.js"
+    filename: "bundle.js",
+    globalObject: "this"
   },
   mode: "production",
   module: {
@@ -16,5 +22,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
