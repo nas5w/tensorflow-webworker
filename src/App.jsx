@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Worker from "./tensorflow.worker.js";
 
+const workerCheck = window.Worker ? "Worker detected!" : "No worker!";
+
 const myWorker = new Worker();
 myWorker.postMessage(null);
 
@@ -18,11 +20,14 @@ const App = () => {
   }, [statuses]);
 
   return (
-    <ul>
-      {statuses.map((status, idx) => (
-        <li key={idx}>{status}</li>
-      ))}
-    </ul>
+    <React.Fragment>
+      <p>{workerCheck}</p>
+      <ul>
+        {statuses.map((status, idx) => (
+          <li key={idx}>{status}</li>
+        ))}
+      </ul>
+    </React.Fragment>
   );
 };
 
