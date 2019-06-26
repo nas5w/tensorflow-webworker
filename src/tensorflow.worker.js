@@ -1,6 +1,6 @@
 import { sequential, layers, randomNormal } from "@tensorflow/tfjs";
 
-onmessage = function(e) {
+onmessage = () => {
   const model = sequential();
   model.add(layers.dense({ units: 100, activation: "relu", inputShape: [10] }));
   model.add(layers.dense({ units: 1, activation: "linear" }));

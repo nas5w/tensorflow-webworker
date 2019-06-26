@@ -1,21 +1,15 @@
-import Worker from "./tensorflow.worker.js";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-var myWorker = new Worker();
-
-myWorker.postMessage(null);
-
-myWorker.onmessage = function(e) {
-  const newListItem = document.createElement("li");
-  newListItem.innerHTML = e.data;
-  const list = document.querySelector("#status");
-  list.append(newListItem);
-};
+ReactDOM.render(<App />, document.getElementById("app"));
 
 if (module.hot) {
   module.hot.accept(
     "./index.js",
     "./tensorflow.worker.js",
-    "index.html",
+    "./index.html",
+    "./App.jsx",
     function() {
       console.log("Accepting the updated index module!");
     }
