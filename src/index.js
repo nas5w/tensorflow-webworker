@@ -8,7 +8,8 @@ if (module.hot) {
   module.hot.accept(
     "./index.js",
     "./tensorflow.worker.js",
-    "index.html",
+    "./index.html",
+    "./App.jsx",
     function() {
       console.log("Accepting the updated index module!");
     }

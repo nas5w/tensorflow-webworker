@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Worker from "./tensorflow.worker.js";
 
+const myWorker = new Worker();
+myWorker.postMessage(null);
+
 const App = () => {
   const [statuses, setStatuses] = useState([]);
 
-  const myWorker = new Worker();
-  myWorker.postMessage(null);
-  myWorker.onmessage = e => setStatuses([...statuses, e.data]);
+  myWorker.onmessage = e => {
+    setStatuses([...statuses, e.data]);
+  };
 
   return (
     <ul>
