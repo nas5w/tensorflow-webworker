@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Worker from "./tensorflow.worker.js";
 
 const myWorker = new Worker();
@@ -7,9 +7,15 @@ myWorker.postMessage(null);
 const App = () => {
   const [statuses, setStatuses] = useState([]);
 
-  myWorker.onmessage = e => {
-    setStatuses([...statuses, e.data]);
-  };
+  useEffect(() => {
+    let canceled = false;
+
+    if (!canceled) {
+      myWorker.onmessage = e => setStatuses([...statuses, e.data]);
+    }
+
+    () => (canceled = true);
+  }, [statuses]);
 
   return (
     <ul>
