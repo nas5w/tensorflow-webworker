@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Worker from "./tensorflow.worker.js";
+import Worker from "./test.worker.js";
 
 const workerCheck = window.Worker ? "Worker detected!" : "No worker!";
 
