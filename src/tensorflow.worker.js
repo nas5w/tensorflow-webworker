@@ -2,6 +2,7 @@ import * as tf from "@tensorflow/tfjs";
 
 onmessage = () => {
   try {
+    tf.setBackend("cpu");
     const model = tf.sequential();
     model.add(
       tf.layers.dense({ units: 100, activation: "relu", inputShape: [10] })
